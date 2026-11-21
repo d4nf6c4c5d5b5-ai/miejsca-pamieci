@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miejsca Pamięci — mapa trudnej historii Polski</title>
+  <meta name="description" content="Obozy, cmentarze wojenne, synagogi, schrony i pomniki z rejestru zabytków — na jednej mapie. Dane: dane.gov.pl (NID, GUGiK).">
+  <meta name="theme-color" content="#1c2421">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='9' y='10' width='14' height='18' rx='2' fill='%239e1b32'/%3E%3Cpath d='M16 3c3 4 3 6 0 8-3-2-3-4 0-8z' fill='%23e8a33d'/%3E%3C/svg%3E">
+  <link rel="preload" href="data/places.json" as="fetch" type="application/json" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Spectral:wght@500;600&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#results">Przejdź do listy miejsc</a>
+  <div class="app">
+    <aside class="panel" id="panel" aria-label="Wyszukiwanie i filtry">
+      <button class="sheet-handle" id="sheetToggle" aria-expanded="true" aria-controls="panel">
+        <span class="sr">Zwiń lub rozwiń panel</span>
+      </button>
+      <header class="intro">
+        <h1>Miejsca Pamięci</h1>
+        <p>Obozy, cmentarze wojenne, synagogi, schrony i pomniki z państwowego rejestru zabytków. Sprawdź, co wydarzyło się w Twojej okolicy.</p>
+      </header>
+
+      <div class="search">
+        <label for="q" class="sr">Szukaj miejscowości lub obiektu</label>
+        <input id="q" type="search" placeholder="Miejscowość, gmina albo nazwa, np. Oświęcim" autocomplete="off" spellcheck="false">
+        <button id="near" class="near" type="button">Co jest blisko mnie?</button>
+      </div>
+
+      <fieldset class="filters">
+        <legend>Co pokazać</legend>
+        <ul id="cats" class="cats"></ul>
+        <label class="woj">
+          <span>Województwo</span>
+          <select id="woj"><option value="">cała Polska</option></select>
+        </label>
+      </fieldset>
+
+      <section class="results" aria-live="polite">
+        <h2 id="count">Wczytywanie danych…</h2>
+        <ol id="results" class="list" tabindex="-1"></ol>
+        <button id="more" class="more" type="button" hidden>Pokaż kolejne</button>
+      </section>
+
+      <footer class="about">
+        <p id="perf"></p>
+        <p>Dane: <a href="https://dane.gov.pl/pl/dataset/1130">Rejestr zabytków nieruchomych</a> i <a href="https://dane.gov.pl/pl/dataset/168">Pomniki historii</a> (Narodowy Instytut Dziedzictwa), <a href="https://dane.gov.pl/pl/dataset/780">PRNG</a> (GUGiK) z portalu dane.gov.pl. Położenie obiektów z rejestru jest przybliżone do miejscowości. <a href="https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci">Kod źródłowy</a></p>
+      </footer>
+    </aside>
+    <main id="map" class="map" aria-label="Mapa miejsc pamięci"></main>
+  </div>
+
+  <template id="card">
+    <article class="plaque">
+      <p class="plaque-cats"></p>
+      <h3 class="plaque-name"></h3>
+      <p class="plaque-chron"></p>
+      <dl>
+        <dt>Funkcja</dt><dd class="plaque-func"></dd>
+        <dt>Adres</dt><dd class="plaque-addr"></dd>
+      </dl>
+      <p class="plaque-note"></p>
+      <p class="plaque-links"><a class="plaque-nid" target="_blank" rel="noopener">Karta zabytku w zabytek.pl</a></p>
+    </article>
+  </template>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin defer></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
