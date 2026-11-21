@@ -1,0 +1,20 @@
+# Dane: duże pliki nie trafiają do repozytorium (odtwarza je scripts/fetch_data.py)
+data/raw/
+web/data/places.json
+web/data/places.json.gz
+*.part
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ruff_cache/
+
+# Sekrety i środowisko
+.env
+
+# System / edytory
+.DS_Store
+.idea/
+.vscode/
