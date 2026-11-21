@@ -64,6 +64,11 @@ class TestCategories(unittest.TestCase):
         self.assertEqual(classify("willa zarządu fabryki fortepianów", "willa"), [])
         self.assertEqual(classify("pomnik nagrobny Piotra i Tekli", "pomnik"), [])
         self.assertEqual(classify("kościół pw. św. Michała", "kościół"), [])
+        # Grobowce rodzinne i figury religijne to nie miejsca pamięci w sensie tego projektu.
+        self.assertEqual(classify("kaplica grobowa rodziny Stadnickich", "mauzoleum"), [])
+        self.assertEqual(classify("pomnik Św. Trójcy", "obelisk/kolumna"), [])
+        # …ale pomnik bitwy już tak.
+        self.assertIn("pamiec", classify("pomnik upamiętniający Bitwę pod Kijami", "pomnik"))
 
     def test_order_follows_priority(self):
         cats = classify("mogiła zbiorowa Polaków z Polen Lager", "cmentarz II wojna światowa")

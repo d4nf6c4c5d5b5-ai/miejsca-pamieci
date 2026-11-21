@@ -119,10 +119,16 @@ a:hover { color: var(--ink); }
 .plaque-note { font-size: .8rem; color: var(--lichen); margin: 0 0 8px; }
 .plaque-links { margin: 0; font-weight: 700; }
 
-.marker-cluster-small, .marker-cluster-medium, .marker-cluster-large { background: rgb(28 36 33 / .18); }
-.marker-cluster-small div, .marker-cluster-medium div, .marker-cluster-large div {
-  background: var(--ink); color: #fff; font: 700 12px var(--sans);
+.marker-cluster { border-radius: 50%; background: rgb(28 36 33 / .18); }
+.marker-cluster div {
+  width: 30px; height: 30px; margin: 5px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--ink); color: #fff; font: 700 12px/1 var(--sans);
+  font-variant-numeric: tabular-nums;
 }
+.marker-cluster-medium div { background: #3a4741; }
+.marker-cluster-large { background: rgb(158 27 50 / .22); }
+.marker-cluster-large div { background: var(--znicz); }
 .leaflet-container { font-family: var(--sans); }
 .you { width: 16px; height: 16px; border-radius: 50%; background: var(--flame); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--ink); }
 

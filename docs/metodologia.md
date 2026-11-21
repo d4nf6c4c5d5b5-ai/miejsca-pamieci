@@ -3,7 +3,7 @@
 | Metryka | |
 |---|---|
 | Identyfikator | MP-DOC-004 |
-| Wersja | 1.0 |
+| Wersja | 1.1 |
 | Status | Zatwierdzony |
 | Autor | d4nf6c4c5d5b5-ai |
 | Data | 2026-11-21 |
@@ -41,7 +41,7 @@ Rejestr nie ma pola kategorii historycznej. Kategorie wyznaczamy jawnymi reguła
 Reguły dodatkowe:
 
 - **Chronologia:** fortyfikacja lub pomnik z lat 1930–1950 dostaje też kategorię „II wojna”, a z lat 1914–1919 kategorię „I wojna” (np. schron „1944–1945”).
-- **Wykluczenia** (fałszywe trafienia znalezione w danych): schroniska turystyczne („schron…”), fortepiany („fort…”), pomniki nagrobne i nagrobki, kapliczki, ogrodzenia.
+- **Wykluczenia** (fałszywe trafienia znalezione w danych): schroniska turystyczne („schron…”), fortepiany („fort…”), pomniki nagrobne i nagrobki, kapliczki, ogrodzenia, figury i pomniki religijne („pomnik Św. Trójcy”). Rodzinne kaplice grobowe („mauzoleum”) i obeliski bez związku z wojną nie są liczone jako miejsca pamięci.
 - **Świadomie pominięte:** średniowieczne mury, baszty i wieże obronne. To zabytki architektury obronnej, nie miejsca pamięci, i zdominowałyby mapę.
 - Obiekt może mieć **kilka kategorii** (np. „cmentarz wojenny z I i II wojny”). Kolor znacznika wynika z kategorii o najwyższym priorytecie (kolejność w tabeli).
 
@@ -58,7 +58,7 @@ Rejestr podaje adres (`WOJEWODZTWO`, `POWIAT`, `GMINA`, `MIEJSCOWOSC`, `ULICA`, 
 3. Gdy w kluczu jest kilka obiektów PRNG, wybieramy według rodzaju: miasto > wieś > osada > część miasta > kolonia > część wsi > przysiółek.
 4. Obiekty z tej samej miejscowości dostają deterministyczne przesunięcie o 75–250 m, żeby nie nakładały się w jednym punkcie. Na mapie rozsuwa je klaster.
 
-**Wynik kontrolny:** na pełnych danych (2026-11-21) wszystkie 2 904 kandydatów na miejsca pamięci dopasowano już pierwszym kluczem (100%). Pomniki Historii mają własne, dokładne współrzędne.
+**Wynik kontrolny:** na pełnych danych (2026-11-21) wszystkie 2 651 miejsc pamięci z rejestru dopasowano już pierwszym kluczem (100%). Pomniki Historii mają własne, dokładne współrzędne.
 
 **Ograniczenie:** punkt na mapie to miejscowość, nie dokładne położenie obiektu. Mówi o tym karta każdego obiektu. Ograniczenie wynika z danych źródłowych (zob. rekomendacje w [lessons learned](lessons-learned.md)).
 
@@ -92,3 +92,4 @@ Rejestr podaje adres (`WOJEWODZTWO`, `POWIAT`, `GMINA`, `MIEJSCOWOSC`, `ULICA`, 
 | Wersja | Data | Autor | Opis zmian |
 |---|---|---|---|
 | 1.0 | 2026-11-21 | d4nf6c4c5d5b5-ai | Pierwsze wydanie. |
+| 1.1 | 2026-11-21 | d4nf6c4c5d5b5-ai | Nowe wykluczenia (mauzolea rodzinne, figury religijne), aktualny wynik geokodowania. |

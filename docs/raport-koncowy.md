@@ -3,7 +3,7 @@
 | Metryka | |
 |---|---|
 | Identyfikator | MP-DOC-002 |
-| Wersja | 1.0 |
+| Wersja | 1.1 |
 | Status | Zatwierdzony |
 | Autor | d4nf6c4c5d5b5-ai |
 | Data | 2026-11-21 |
@@ -13,7 +13,7 @@
 
 ## 1. Streszczenie
 
-Projekt dostarczył otwartoźródłową aplikację, która z trzech zbiorów dane.gov.pl (NID, GUGiK) buduje mapę **{{MIEJSCA}} miejsc pamięci** w Polsce: obozów, cmentarzy wojennych, synagog i kirkutów, mogił powstańców, fortyfikacji i Pomników Historii. Dane są pobierane i przetwarzane automatycznie, aplikacja działa po jednej komendzie (`docker compose up`) i na darmowym GitHub Pages, a dane aktualizują się co tydzień. Wszystkie cele zakresowe zrealizowano. Główne odstępstwo od planu to zmiana tematu w pierwszym dniu (pkt 5.1).
+Projekt dostarczył otwartoźródłową aplikację, która z trzech zbiorów dane.gov.pl (NID, GUGiK) buduje mapę **2 834 miejsc pamięci** w Polsce: obozów, cmentarzy wojennych, synagog i kirkutów, mogił powstańców, fortyfikacji i Pomników Historii. Dane są pobierane i przetwarzane automatycznie, aplikacja działa po jednej komendzie (`docker compose up`) i na darmowym GitHub Pages, a dane aktualizują się co tydzień. Wszystkie cele zakresowe zrealizowano. Główne odstępstwo od planu to zmiana tematu w pierwszym dniu (pkt 5.1).
 
 ## 2. Cel projektu
 
@@ -59,22 +59,37 @@ Uczniowie i nauczyciele historii, mieszkańcy, turyści, przewodnicy, organizacj
 
 | Wskaźnik | Wartość |
 |---|---|
-| Rekordy w rejestrze zabytków nieruchomych | {{REJESTR}} |
-| Miejsca pamięci wyodrębnione z rejestru | {{MP_REJESTR}} |
-| Zlokalizowane (geokodowanie PRNG) | {{ZLOK}} |
-| Lokalizacje Pomników Historii | {{PH}} |
-| **Razem na mapie** | **{{MIEJSCA}}** |
-{{KATEGORIE}}
+| Rekordy w rejestrze zabytków nieruchomych | 81 279 |
+| Miejsca pamięci wyodrębnione z rejestru | 2 651 |
+| Zlokalizowane (geokodowanie PRNG) | 2 651 (100%) |
+| Lokalizacje Pomników Historii | 183 |
+| **Razem na mapie** | **2 834** |
+
+| Kategoria | Liczba obiektów* |
+|---|---|
+| Obozy i getta | 27 |
+| II wojna światowa | 374 |
+| Dziedzictwo żydowskie | 479 |
+| I wojna światowa | 683 |
+| Powstania narodowe | 73 |
+| Wojna 1920 | 18 |
+| Fortyfikacje | 1 147 |
+| Pomniki i miejsca pamięci | 962 |
+| Pomniki Historii | 183 |
+
+\* Obiekt może należeć do kilku kategorii, dlatego suma przekracza liczbę miejsc.
+
+Kontrola jakości po pierwszej pełnej budowie: przegląd losowych obiektów z kategorii „Pomniki i miejsca pamięci” wykazał 385 fałszywych trafień (rodzinne kaplice grobowe opisane jako „mauzoleum”, figury i kolumny religijne). Reguły poprawiono (wersja 1.0.1), a liczba miejsc z rejestru spadła z 3 036 do 2 651 (LL-13).
 
 ### 4.3. Wydajność
 
 | Wskaźnik | Wartość | Jak mierzono |
 |---|---|---|
-| Rozmiar `places.json` | {{ROZMIAR}} | plik po budowie |
-| Rozmiar po kompresji gzip | {{ROZMIAR_GZ}} | `places.json.gz` |
-| Czas budowy danych w CI | {{CZAS_BUDOWY}} | log GitHub Actions |
-| Start aplikacji (dane + mapa) | {{START}} | `performance.now()`, stopka aplikacji, GitHub Pages |
-| Filtrowanie / wyszukiwanie | {{FILTR}} | `#perf[data-filter-ms]` |
+| Rozmiar `places.json` | ok. 0,5 MB (578 kB przy wersji 1.0.0 z 3 219 miejscami) | plik po budowie |
+| Rozmiar po kompresji gzip | 121 kB przesyłane przez sieć (4,8× mniej; pomiar w przeglądarce na GitHub Pages) | `places.json.gz` |
+| Czas budowy danych w CI | 158 s (pobranie 55 MB + przetworzenie), cały workflow 3 min 15 s | log GitHub Actions |
+| Start aplikacji (dane + mapa) | DOMContentLoaded 0,62 s, pełne załadowanie 0,97 s (pierwsza wizyta, bez cache) | `performance.now()`, stopka aplikacji, GitHub Pages |
+| Filtrowanie / wyszukiwanie | 19–29 ms dla 3 219 miejsc (z przebudową klastrów mapy) | `#perf[data-filter-ms]` |
 | Kod aplikacji (HTML+CSS+JS) | ~24 kB | bez kompresji, bez frameworków |
 
 Techniki optymalizacji opisuje [architektura](architektura.md#3-wydajność-zastosowane-techniki).
@@ -144,3 +159,4 @@ Plan i wykonanie: 0 zł. Wszystkie narzędzia i usługi są bezpłatne (GitHub, 
 | Wersja | Data | Autor | Opis zmian |
 |---|---|---|---|
 | 1.0 | 2026-11-21 | d4nf6c4c5d5b5-ai | Raport po zakończeniu projektu, z wynikami pierwszej pełnej budowy danych. |
+| 1.1 | 2026-11-21 | d4nf6c4c5d5b5-ai | Wyniki po poprawce reguł klasyfikacji (v1.0.1) i pomiary wydajności z GitHub Pages. |

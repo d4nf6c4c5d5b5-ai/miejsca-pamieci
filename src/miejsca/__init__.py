@@ -5,4 +5,4 @@ obiektów z rejestru zabytków, geokodowanie po miejscowościach (PRNG)
 i zapis zoptymalizowanego pliku JSON dla aplikacji webowej.
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"

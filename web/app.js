@@ -260,11 +260,13 @@
       initMap();
       initUI();
       apply({ fit: true });
-      const total = performance.now() - t0;
+      // performance.now() liczy od początku nawigacji, więc to pełny czas od wejścia na stronę.
+      const total = performance.now();
+      const sec = (ms) => (ms / 1000).toFixed(2).replace(".", ",");
       const gen = new Date(DATA.generated).toLocaleDateString("pl-PL");
       $("#perf").textContent =
-        `Wczytano ${fmt.format(ITEMS.length)} miejsc w ${(total / 1000).toFixed(2).replace(".", ",")} s ` +
-        `(dane ${((tFetch - t0) / 1000).toFixed(2).replace(".", ",")} s). Aktualizacja danych: ${gen}.`;
+        `Mapa gotowa w ${sec(total)} s od otwarcia strony (${fmt.format(ITEMS.length)} miejsc, ` +
+        `dane przetworzone w ${sec(tFetch - t0)} s). Aktualizacja danych: ${gen}.`;
       if (state.openId) {
         const it = ITEMS.find((x) => x.id === state.openId);
         if (it) focusItem(it);

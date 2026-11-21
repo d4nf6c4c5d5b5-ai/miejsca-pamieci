@@ -59,14 +59,18 @@ RULES: dict[str, re.Pattern[str]] = {
     ),
     "pamiec": re.compile(
         r"pomnik|mogił|kwater[ay]\s+wojen|cmentarz\s+wojen|cmentarz\s+wojsk|"
-        r"miejsc[ae]\s+pamięci|mauzole|ofiar|egzekuc|straceń|kaźni|martyrolog|poległ|pomordowan|zamordowan|"
-        r"obelisk|kopiec",
+        r"miejsc[ae]\s+pamięci|ofiar|egzekuc|straceń|kaźni|martyrolog|poległ|pomordowan|zamordowan|"
+        r"kopiec",
         _I,
     ),
 }
 
 # Fałszywe trafienia: obiekty, które pasują słowem, ale nie są miejscem pamięci.
-_EXCLUDE = re.compile(r"schronisk|koszar\w*\s+d\.\s+obozu|ogrodzenie|kapliczk|fortepian|pomnik\s+nagrobn|nagrobek", _I)
+_EXCLUDE = re.compile(
+    r"schronisk|koszar\w*\s+d\.\s+obozu|ogrodzenie|kapliczk|fortepian|pomnik\s+nagrobn|nagrobek|"
+    r"pomnik\s+(?:św|matki|najśw|nmp|jezus|chrystus|serca)|figura",
+    _I,
+)
 
 _YEAR = re.compile(r"(1[0-9]{3})")
 

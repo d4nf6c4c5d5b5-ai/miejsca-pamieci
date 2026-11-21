@@ -4,6 +4,13 @@ Wszystkie istotne zmiany w projekcie. Format: [Keep a Changelog](https://keepach
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-21
+
+### Poprawiono
+- Klasyfikacja: rodzinne kaplice grobowe („mauzoleum”), obeliski i figury religijne nie są już liczone jako miejsca pamięci (−385 fałszywych trafień).
+- Wygląd znaczników klastrów na mapie.
+- Pomiar czasu startu w stopce liczony od otwarcia strony.
+
 ## [1.0.0] - 2026-11-21
 
 ### Dodano
@@ -15,7 +22,8 @@ Wszystkie istotne zmiany w projekcie. Format: [Keep a Changelog](https://keepach
 - CI: ruff, testy na Pythonie 3.10–3.13, test obrazu Dockera.
 - Dokumentacja: raport końcowy (ISO 21513), lessons learned (PMI), metodologia, architektura, rejestr dokumentów (ISO 10013).
 
-[Unreleased]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/releases/tag/v1.0.0
 
 ---

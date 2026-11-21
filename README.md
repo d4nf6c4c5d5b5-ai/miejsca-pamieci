@@ -1,6 +1,6 @@
 # Miejsca Pamięci
 
-**Mapa trudnej historii Polski z otwartych danych.** Obozy, getta, cmentarze wojenne z I i II wojny światowej, mogiły powstańców, synagogi i kirkuty, schrony, forty i pomniki z państwowego rejestru zabytków na jednej mapie z wyszukiwarką.
+**Mapa trudnej historii Polski z otwartych danych.** 2 834 miejsca: obozy, getta, cmentarze wojenne z I i II wojny światowej, mogiły powstańców, synagogi i kirkuty, schrony, forty i pomniki z państwowego rejestru zabytków na jednej mapie z wyszukiwarką.
 
 **Demo:** https://d4nf6c4c5d5b5-ai.github.io/miejsca-pamieci/
 
@@ -79,7 +79,7 @@ Zmienne środowiskowe opisuje [`.env.example`](.env.example) (`cp .env.example .
 | Strumieniowe czytanie XLSX (`iterparse`) | arkusz PRNG (190 MB XML) czytany wiersz po wierszu, bez ładowania całości do pamięci |
 | Brak frameworka i kroku budowania JS | 3 pliki: HTML, CSS, JS (razem ~24 kB przed kompresją) |
 
-Czas ładowania i liczba miejsc są widoczne w stopce aplikacji. Pomiary: [`docs/raport-koncowy.md`](docs/raport-koncowy.md#4-rezultaty).
+Zmierzone na GitHub Pages: dane 578 kB → 121 kB przez sieć, strona gotowa (DOMContentLoaded) po 0,62 s, filtrowanie 3 tys. miejsc w ~20–30 ms. Czas startu i liczba miejsc są też widoczne w stopce aplikacji. Pomiary: [`docs/raport-koncowy.md`](docs/raport-koncowy.md#4-rezultaty).
 
 ## Struktura repozytorium
 

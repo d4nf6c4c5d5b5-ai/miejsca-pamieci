@@ -3,7 +3,7 @@
 | Metryka | |
 |---|---|
 | Identyfikator | MP-DOC-003 |
-| Wersja | 1.0 |
+| Wersja | 1.1 |
 | Status | Zatwierdzony |
 | Autor | d4nf6c4c5d5b5-ai |
 | Data | 2026-11-21 |
@@ -29,6 +29,7 @@
 | LL-09 | Dane | Dla PRNG pole `file_url` w dane.gov.pl wskazuje kopię z **2021 r.** | Ryzyko budowy na nieaktualnych danych | Priorytet dla pola `link` (aktualny plik GUGiK), `download_url` jako zapas |
 | LL-10 | Klasyfikacja | Proste słowa kluczowe dają fałszywe trafienia: „schronisko” (schron), „fortepian” (fort), „pomnik nagrobny”, kapliczka „Męczeńskiej śmierci” | Na mapie pojawiłyby się obiekty niezwiązane z tematem | Lista wykluczeń + test dla każdego znalezionego przypadku |
 | LL-11 | Klasyfikacja | „I wojna” zawiera się w „II wojna” | Cmentarze z II wojny trafiały do I wojny | Wyrażenie z lookbehind `(?<![I\w])I\s+wojn` + test |
+| LL-13 | Klasyfikacja | Słowo „mauzoleum” w regule „miejsca pamięci” złapało 385 rodzinnych kaplic grobowych | Co ósmy obiekt na mapie był nie na temat | Przegląd próbki po pierwszej pełnej budowie, zawężenie reguły + testy (v1.0.1) |
 | LL-12 | Klasyfikacja | Nazwy gmin zapisane inaczej w NID i PRNG („Słomniki - obszar wiejski” i „Słomniki-gmina miejsko-wiejska”) | Brak dopasowań | Normalizacja do rdzenia nazwy gminy |
 
 ## 3. Co zrobilibyśmy inaczej
@@ -54,3 +55,4 @@
 | Wersja | Data | Autor | Opis zmian |
 |---|---|---|---|
 | 1.0 | 2026-11-21 | d4nf6c4c5d5b5-ai | Pierwsze wydanie po zakończeniu projektu. |
+| 1.1 | 2026-11-21 | d4nf6c4c5d5b5-ai | Dodano LL-13 (fałszywe trafienia „mauzoleum”). |

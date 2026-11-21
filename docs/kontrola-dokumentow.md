@@ -3,7 +3,7 @@
 | Metryka | |
 |---|---|
 | Identyfikator | MP-DOC-001 |
-| Wersja | 1.0 |
+| Wersja | 1.1 |
 | Status | Zatwierdzony |
 | Autor | d4nf6c4c5d5b5-ai |
 | Data | 2026-11-21 |
@@ -52,9 +52,9 @@ Dokumenty zewnętrzne (opisy zbiorów na dane.gov.pl, dokumentacja API, legenda 
 |---|---|---|---|---|---|---|
 | MP-DOC-000 | README: opis projektu i uruchomienie | [`README.md`](../README.md) | 1.0 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
 | MP-DOC-001 | Rejestr i zasady kontroli dokumentów | [`docs/kontrola-dokumentow.md`](kontrola-dokumentow.md) | 1.0 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
-| MP-DOC-002 | Raport końcowy | [`docs/raport-koncowy.md`](raport-koncowy.md) | 1.0 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
-| MP-DOC-003 | Lessons learned | [`docs/lessons-learned.md`](lessons-learned.md) | 1.0 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
-| MP-DOC-004 | Metodologia danych | [`docs/metodologia.md`](metodologia.md) | 1.0 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
+| MP-DOC-002 | Raport końcowy | [`docs/raport-koncowy.md`](raport-koncowy.md) | 1.1 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
+| MP-DOC-003 | Lessons learned | [`docs/lessons-learned.md`](lessons-learned.md) | 1.1 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
+| MP-DOC-004 | Metodologia danych | [`docs/metodologia.md`](metodologia.md) | 1.1 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
 | MP-DOC-005 | Architektura i wydajność | [`docs/architektura.md`](architektura.md) | 1.0 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
 | MP-DOC-006 | Zasady współtworzenia | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | 1.0 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
 | MP-DOC-007 | Kodeks postępowania | [`CODE_OF_CONDUCT.md`](../CODE_OF_CONDUCT.md) | 1.0 | Zatwierdzony | d4nf6c4c5d5b5-ai | 2026-11-21 |
@@ -65,3 +65,4 @@ Dokumenty zewnętrzne (opisy zbiorów na dane.gov.pl, dokumentacja API, legenda 
 | Wersja | Data | Autor | Opis zmian |
 |---|---|---|---|
 | 1.0 | 2026-11-21 | d4nf6c4c5d5b5-ai | Pierwsze wydanie: zasady i rejestr 9 dokumentów. |
+| 1.1 | 2026-11-21 | d4nf6c4c5d5b5-ai | Aktualizacja wersji MP-DOC-002, -003, -004 do 1.1. |
