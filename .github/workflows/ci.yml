@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "ruff>=0.6"
+      - run: ruff check .
+      - run: ruff format --check .
+      - name: Składnia JavaScript
+        run: node --check web/app.js
+
+  test:
+    name: Testy (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m unittest discover -s tests -v
+      - name: Budowa danych z próbki (offline)
+        run: python scripts/fetch_data.py --sample
+
+  docker:
+    name: Obraz Docker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Budowa i test uruchomienia
+        run: |
+          docker build -t miejsca-pamieci .
+          docker run -d --name mp -p 8080:8080 -e DATA_SOURCE=sample miejsca-pamieci
+          for i in $(seq 1 30); do curl -fs http://localhost:8080/data/places.json >/dev/null && break; sleep 1; done
+          curl -fs http://localhost:8080/ | grep -q "Miejsca Pamięci"
+          curl -fs http://localhost:8080/data/places.json | python3 -c "import json,sys; d=json.load(sys.stdin); assert d['rows']; print(len(d['rows']), 'miejsc')"

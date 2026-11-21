@@ -1,0 +1,8 @@
+.git
+.github
+data/raw
+web/data/places.json*
+.env
+**/__pycache__
+.ruff_cache
+docs

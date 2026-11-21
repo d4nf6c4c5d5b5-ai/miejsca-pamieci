@@ -1,0 +1,27 @@
+name: Błąd w danych lub kategorii
+description: Obiekt ma złą kategorię, złe położenie albo go brakuje
+labels: ["dane"]
+body:
+  - type: input
+    id: object
+    attributes:
+      label: Obiekt
+      description: Nazwa i miejscowość albo identyfikator INSPIRE (widoczny w linku do zabytek.pl)
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Rodzaj problemu
+      options:
+        - Zła kategoria
+        - Złe położenie na mapie
+        - Brakuje obiektu
+        - Obiekt nie powinien być na mapie
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Szczegóły i źródło
+      description: Skąd wiesz, jak powinno być? Link do źródła bardzo pomaga.

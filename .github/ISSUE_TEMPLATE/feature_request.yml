@@ -1,0 +1,14 @@
+name: Propozycja funkcji
+description: Pomysł na ulepszenie
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Jaki problem rozwiązuje?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proponowane rozwiązanie

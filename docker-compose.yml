@@ -1,0 +1,18 @@
+# Uruchomienie jedną komendą:  docker compose up
+# Aplikacja: http://localhost:8080
+services:
+  app:
+    build: .
+    image: miejsca-pamieci:latest
+    ports:
+      - "${PORT:-8080}:8080"
+    environment:
+      DATA_SOURCE: ${DATA_SOURCE:-dane.gov.pl}
+      DANE_API_URL: ${DANE_API_URL:-https://api.dane.gov.pl/1.4}
+      HTTP_TIMEOUT: ${HTTP_TIMEOUT:-120}
+    volumes:
+      - raw-data:/data/raw   # pobrane pliki są cache'owane między uruchomieniami
+    restart: unless-stopped
+
+volumes:
+  raw-data:
