@@ -1,6 +1,6 @@
 [project]
 name = "miejsca-pamieci"
-version = "1.0.1"
+version = "1.0.2"
 description = "Mapa miejsc pamięci w Polsce na podstawie otwartych danych z dane.gov.pl"
 readme = "README.md"
 license = { text = "MIT" }

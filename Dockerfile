@@ -13,6 +13,9 @@ COPY scripts ./scripts
 COPY tests ./tests
 COPY web ./web
 
+# Biblioteki mapy pobierane przy budowie obrazu (strona nie zależy od CDN).
+RUN python scripts/fetch_vendor.py || echo "Brak sieci przy budowie: strona użyje CDN jako zapasu"
+
 RUN adduser -D -H app && mkdir -p /data/raw && chown -R app /data /app/web
 USER app
 EXPOSE 8080

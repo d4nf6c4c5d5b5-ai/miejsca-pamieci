@@ -4,6 +4,9 @@ web/data/places.json
 web/data/places.json.gz
 *.part
 
+# Biblioteki mapy (pobiera scripts/fetch_vendor.py)
+web/vendor/
+
 # Python
 __pycache__/
 *.py[cod]

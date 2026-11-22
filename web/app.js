@@ -252,11 +252,38 @@
     });
   }
 
+  /* ---------- Biblioteki mapy: lokalne, a w razie braku — CDN jako zapas ---------- */
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = () => reject(new Error(`Nie wczytano ${src}`));
+      document.head.append(s);
+    });
+  }
+  function loadCss(href) {
+    const l = document.createElement("link");
+    l.rel = "stylesheet";
+    l.href = href;
+    document.head.append(l);
+  }
+  async function ensureLeaflet() {
+    if (window.L && L.markerClusterGroup) return;
+    const cdn = "https://cdn.jsdelivr.net/npm/";
+    if (!window.L) {
+      loadCss(`${cdn}leaflet@1.9.4/dist/leaflet.css`);
+      await loadScript(`${cdn}leaflet@1.9.4/dist/leaflet.js`);
+    }
+    loadCss(`${cdn}leaflet.markercluster@1.5.3/dist/MarkerCluster.css`);
+    await loadScript(`${cdn}leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js`);
+  }
+
   /* ---------- Start ---------- */
   readHash();
   window.addEventListener("DOMContentLoaded", async () => {
     try {
-      const tFetch = await load();
+      const [tFetch] = await Promise.all([load(), ensureLeaflet()]);
       initMap();
       initUI();
       apply({ fit: true });
@@ -265,14 +292,16 @@
       const sec = (ms) => (ms / 1000).toFixed(2).replace(".", ",");
       const gen = new Date(DATA.generated).toLocaleDateString("pl-PL");
       $("#perf").textContent =
-        `Mapa gotowa w ${sec(total)} s od otwarcia strony (${fmt.format(ITEMS.length)} miejsc, ` +
+        `Mapa gotowa w ${sec(total)} s od otwarcia strony (${fmt.format(ITEMS.length)} ${plural(ITEMS.length)}, ` +
         `dane przetworzone w ${sec(tFetch - t0)} s). Aktualizacja danych: ${gen}.`;
       if (state.openId) {
         const it = ITEMS.find((x) => x.id === state.openId);
         if (it) focusItem(it);
       }
     } catch (err) {
-      $("#count").textContent = "Nie udało się wczytać danych. Odśwież stronę; jeśli uruchamiasz lokalnie, najpierw zbuduj dane: python scripts/fetch_data.py";
+      $("#count").textContent = window.L
+        ? "Nie udało się wczytać danych. Odśwież stronę; jeśli uruchamiasz lokalnie, najpierw zbuduj dane: python3 scripts/fetch_data.py"
+        : "Nie udało się wczytać mapy. Sprawdź połączenie z internetem i odśwież stronę.";
       console.error(err);
     }
   });

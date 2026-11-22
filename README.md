@@ -49,6 +49,7 @@ Bez internetu: `DATA_SOURCE=sample docker compose up` (mała próbka testowa).
 Projekt nie ma zależności, wystarczy biblioteka standardowa.
 
 ```bash
+python3 scripts/fetch_vendor.py # biblioteki mapy (Leaflet) → web/vendor/
 python3 scripts/fetch_data.py   # pobiera dane z API dane.gov.pl → web/data/places.json
 python3 scripts/serve.py        # http://localhost:8080
 ```
@@ -72,6 +73,7 @@ Zmienne środowiskowe opisuje [`.env.example`](.env.example) (`cp .env.example .
 | Dane przetwarzane raz, przy budowie (nie w przeglądarce) | przeglądarka dostaje gotowy plik zamiast 3 zbiorów (~55 MB) |
 | Kolumnowy JSON (`columns` + `rows`), kategorie jako maska bitowa | nazwy pól zapisane raz, nie w każdym rekordzie |
 | Kompresja gzip (`places.json.gz`, Pages kompresuje automatycznie) | ok. 5× mniej danych do pobrania |
+| Leaflet serwowany z tej samej domeny (`web/vendor/`), CDN tylko jako zapas; fonty ładowane bez blokowania | strona działa także tam, gdzie unpkg/jsdelivr są wolne lub zablokowane |
 | `<link rel="preload">` danych | pobieranie danych startuje równolegle z bibliotekami mapy |
 | Leaflet z rendererem Canvas + klastrowanie (`chunkedLoading`) | tysiące punktów bez zacinania, także na telefonie |
 | Indeks wyszukiwania budowany raz (tekst bez polskich znaków), debounce 160 ms | filtrowanie w milisekundach, bez zapytań do serwera |
@@ -92,6 +94,7 @@ Zmierzone na GitHub Pages: dane 578 kB → 121 kB przez sieć, strona gotowa (DO
 │   └── build.py          budowa web/data/places.json
 ├── scripts/
 │   ├── fetch_data.py     pobranie danych + budowa (odtwarzalność wyniku)
+│   ├── fetch_vendor.py   biblioteki mapy z npm (z kontrolą sumy SHA-512)
 │   └── serve.py          serwer statyczny z gzip
 ├── web/                  aplikacja (HTML/CSS/JS + Leaflet)
 ├── tests/                testy + mała próbka danych (fixtures)

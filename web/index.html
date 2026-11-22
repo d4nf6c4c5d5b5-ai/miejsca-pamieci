@@ -8,12 +8,13 @@
   <meta name="theme-color" content="#1c2421">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='9' y='10' width='14' height='18' rx='2' fill='%239e1b32'/%3E%3Cpath d='M16 3c3 4 3 6 0 8-3-2-3-4 0-8z' fill='%23e8a33d'/%3E%3C/svg%3E">
   <link rel="preload" href="data/places.json" as="fetch" type="application/json" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Spectral:wght@500;600&display=swap">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" crossorigin>
+  <!-- Fonty ładowane bez blokowania strony: przy wolnym łączu tekst pokaże się od razu krojem systemowym. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Spectral:wght@500;600&display=swap" media="print" onload="this.media='all'">
+  <!-- Biblioteki mapy serwowane z tej samej domeny (scripts/fetch_vendor.py), bez zależności od CDN. -->
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="vendor/leaflet.markercluster/MarkerCluster.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -71,8 +72,8 @@
     </article>
   </template>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin defer></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" crossorigin defer></script>
+  <script src="vendor/leaflet/leaflet.js" defer></script>
+  <script src="vendor/leaflet.markercluster/leaflet.markercluster.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>

@@ -27,6 +27,8 @@ jobs:
           python-version: "3.12"
       - name: Testy
         run: python -m unittest discover -s tests
+      - name: Biblioteki mapy (Leaflet) do web/vendor
+        run: python scripts/fetch_vendor.py
       - name: Pobranie danych z dane.gov.pl i budowa
         run: python scripts/fetch_data.py --force
       - name: Raport jakości danych

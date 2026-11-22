@@ -4,6 +4,13 @@ Wszystkie istotne zmiany w projekcie. Format: [Keep a Changelog](https://keepach
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-11-22
+
+### Poprawiono
+- Mapa nie ładowała się w sieciach, w których unpkg.com działa wolno: Leaflet jest teraz serwowany z tej samej domeny (`scripts/fetch_vendor.py`, pliki z rejestru npm z kontrolą SHA-512), a CDN jsDelivr służy tylko jako zapas.
+- Fonty Google ładowane bez blokowania wyświetlania strony.
+- Czytelny komunikat, gdy biblioteki mapy nie mogą się wczytać.
+
 ## [1.0.1] - 2026-11-21
 
 ### Poprawiono
@@ -22,7 +29,8 @@ Wszystkie istotne zmiany w projekcie. Format: [Keep a Changelog](https://keepach
 - CI: ruff, testy na Pythonie 3.10–3.13, test obrazu Dockera.
 - Dokumentacja: raport końcowy (ISO 21513), lessons learned (PMI), metodologia, architektura, rejestr dokumentów (ISO 10013).
 
-[Unreleased]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/releases/tag/v1.0.0
 
