@@ -41,6 +41,19 @@ jobs:
         if: matrix.python == '3.12'
         run: python scripts/fetch_vendor.py && test -f web/vendor/leaflet/leaflet.js
 
+  e2e:
+    name: Test w przeglądarce (Chromium)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install playwright && python -m playwright install --with-deps chromium
+      - run: python scripts/fetch_vendor.py
+      - run: python scripts/fetch_data.py --sample
+      - run: python tests/e2e_smoke.py
+
   docker:
     name: Obraz Docker
     runs-on: ubuntu-latest

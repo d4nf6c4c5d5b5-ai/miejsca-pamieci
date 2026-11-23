@@ -21,6 +21,7 @@ cd miejsca-pamieci
 git checkout -b poprawka/krotki-opis
 make sample serve        # aplikacja na próbce danych: http://localhost:8080
 make test lint           # przed wysłaniem PR
+python tests/e2e_smoke.py   # opcjonalnie: test w przeglądarce (pip install playwright)
 ```
 
 Do lintera potrzebny jest `ruff` (`pip install ruff`). Reszta projektu wymaga tylko Pythona 3.10+.

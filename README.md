@@ -12,7 +12,7 @@ Państwowy rejestr zabytków zawiera ponad 81 tys. obiektów, w tym kilka tysię
 - dane to plik CSV (29 MB, kodowanie Windows-1250), którego nie da się wygodnie przeglądać;
 - obiekty z rejestru nie mają współrzędnych, więc nie można ich po prostu pokazać na mapie.
 
-Miejsca Pamięci łączy trzy zbiory z dane.gov.pl, sam klasyfikuje obiekty i umieszcza je na mapie. Każdy (uczeń, nauczyciel, mieszkaniec, turysta) może sprawdzić, co wydarzyło się w jego okolicy: wpisać miejscowość albo kliknąć **„Co jest blisko mnie?”**.
+Miejsca Pamięci łączy trzy zbiory z dane.gov.pl, sam klasyfikuje obiekty i umieszcza je na mapie. Każdy (uczeń, nauczyciel, mieszkaniec, turysta) może sprawdzić, co wydarzyło się w jego okolicy: wpisać miejscowość albo kliknąć **„Co jest blisko mnie?”**. Przycisk **„Losuj miejsce”** przenosi mapę do przypadkowego miejsca spośród widocznych: dobry sposób, by odkryć historię, o której się nie wiedziało.
 
 Przykłady: `#q=oświęcim`, `#q=gorlice` (cmentarze z I wojny), `#q=łambinowice` (Stalag VIII B Lamsdorf), `#woj=podlaskie&bez=fortyfikacje`.
 
@@ -116,11 +116,12 @@ Duże pliki danych nie trafiają do repozytorium. Każdy odtworzy je skryptem `s
 ## Testy i jakość
 
 ```bash
-make test   # 19 testów jednostkowych i end-to-end na próbce prawdziwych rekordów
+make test   # 19 testów jednostkowych i end-to-end potoku na próbce prawdziwych rekordów
 make lint   # ruff (Python) + node --check (JS)
+python tests/e2e_smoke.py   # test w prawdziwej przeglądarce (wymaga: pip install playwright)
 ```
 
-CI ([`ci.yml`](.github/workflows/ci.yml)) przy każdym PR uruchamia linter, testy na Pythonie 3.10/3.12/3.13 i sprawdza, czy obraz Dockera się buduje i serwuje aplikację.
+CI ([`ci.yml`](.github/workflows/ci.yml)) przy każdym PR uruchamia linter, testy na Pythonie 3.10/3.12/3.13, test w przeglądarce Chromium (ładowanie mapy, wyszukiwarka, „Losuj miejsce”, widok desktop i mobilny) oraz sprawdza, czy obraz Dockera się buduje i serwuje aplikację.
 
 ## Dokumentacja
 

@@ -175,8 +175,16 @@
     $("#more").hidden = n <= state.shown;
   }
 
-  function focusItem(it) {
-    cluster.zoomToShowLayer(it.marker, () => it.marker.openPopup());
+  function focusItem(it, { fly = false } = {}) {
+    const open = () => cluster.zoomToShowLayer(it.marker, () => it.marker.openPopup());
+    const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (fly && !calm) {
+      map.closePopup();
+      map.once("moveend", open);
+      map.flyTo([it.lat, it.lon], 13, { duration: 1.6 });
+    } else {
+      open();
+    }
     if (matchMedia("(max-width: 760px)").matches) setSheet(false);
   }
 
@@ -226,6 +234,18 @@
     q.addEventListener("input", () => {
       clearTimeout(timer);
       timer = setTimeout(() => { state.q = q.value.trim(); state.near = null; apply({ fit: true }); }, 160);
+    });
+
+    // Losowe miejsce spośród tych, które przechodzą bieżące filtry (bez powtórzeń pod rząd).
+    let lastRandom = null;
+    $("#random").addEventListener("click", () => {
+      if (!filtered.length) return;
+      let it;
+      do {
+        it = filtered[Math.floor(Math.random() * filtered.length)];
+      } while (filtered.length > 1 && it === lastRandom);
+      lastRandom = it;
+      focusItem(it, { fly: true });
     });
 
     $("#more").addEventListener("click", () => { state.shown += PAGE; renderList(); });
