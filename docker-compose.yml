@@ -10,9 +10,12 @@ services:
       DATA_SOURCE: ${DATA_SOURCE:-dane.gov.pl}
       DANE_API_URL: ${DANE_API_URL:-https://api.dane.gov.pl/1.4}
       HTTP_TIMEOUT: ${HTTP_TIMEOUT:-120}
+      REFRESH: ${REFRESH:-0}
     volumes:
-      - raw-data:/data/raw   # pobrane pliki są cache'owane między uruchomieniami
+      - raw-data:/data/raw        # pobrane pliki z dane.gov.pl (cache)
+      - map-data:/app/web/data    # zbudowana mapa: kolejne starty trwają kilka sekund
     restart: unless-stopped
 
 volumes:
   raw-data:
+  map-data:

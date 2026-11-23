@@ -4,6 +4,11 @@ Wszystkie istotne zmiany w projekcie. Format: [Keep a Changelog](https://keepach
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-23
+
+### Dodano
+- Szybki start kontenera: zbudowana mapa jest trzymana w wolumenie `map-data`, więc każde kolejne `docker compose up` startuje w kilka sekund. `REFRESH=1` wymusza pobranie świeżych danych (`scripts/docker-start.sh`).
+
 ## [1.0.2] - 2026-11-22
 
 ### Poprawiono
@@ -29,7 +34,8 @@ Wszystkie istotne zmiany w projekcie. Format: [Keep a Changelog](https://keepach
 - CI: ruff, testy na Pythonie 3.10–3.13, test obrazu Dockera.
 - Dokumentacja: raport końcowy (ISO 21513), lessons learned (PMI), metodologia, architektura, rejestr dokumentów (ISO 10013).
 
-[Unreleased]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/d4nf6c4c5d5b5-ai/miejsca-pamieci/releases/tag/v1.0.0

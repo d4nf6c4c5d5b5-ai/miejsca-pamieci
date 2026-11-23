@@ -16,13 +16,15 @@ COPY web ./web
 # Biblioteki mapy pobierane przy budowie obrazu (strona nie zależy od CDN).
 RUN python scripts/fetch_vendor.py || echo "Brak sieci przy budowie: strona użyje CDN jako zapasu"
 
-RUN adduser -D -H app && mkdir -p /data/raw && chown -R app /data /app/web
+RUN adduser -D -H app && mkdir -p /data/raw /app/web/data && chown -R app /data /app/web
 USER app
 EXPOSE 8080
 
-# Przy starcie: pobierz dane (jeśli brak w wolumenie), zbuduj places.json, uruchom serwer.
-# DATA_SOURCE=sample -> wersja offline z próbki testowej.
-CMD ["sh", "-c", "if [ \"$DATA_SOURCE\" = sample ]; then python scripts/fetch_data.py --sample; else python scripts/fetch_data.py || python scripts/fetch_data.py --sample; fi && exec python scripts/serve.py"]
+# Przy starcie:
+#  - jeśli w wolumenie jest już zbudowana mapa (web/data/places.json) -> start w kilka sekund,
+#  - jeśli nie: pobierz dane z dane.gov.pl i zbuduj (pierwszy raz ok. 2-3 min),
+#  - REFRESH=1 wymusza ponowne pobranie danych, DATA_SOURCE=sample -> próbka offline.
+CMD ["sh", "scripts/docker-start.sh"]
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=120s \
   CMD wget -qO- http://127.0.0.1:${PORT}/ >/dev/null || exit 1

@@ -2,6 +2,7 @@
 data/raw/
 web/data/places.json
 web/data/places.json.gz
+web/data/.sample
 *.part
 
 # Biblioteki mapy (pobiera scripts/fetch_vendor.py)

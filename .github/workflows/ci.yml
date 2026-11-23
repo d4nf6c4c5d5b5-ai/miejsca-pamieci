@@ -53,4 +53,12 @@ jobs:
           for i in $(seq 1 30); do curl -fs http://localhost:8080/data/places.json >/dev/null && break; sleep 1; done
           curl -fs http://localhost:8080/ | grep -q "Miejsca Pamięci"
           curl -fs http://localhost:8080/vendor/leaflet/leaflet.js >/dev/null
+      - name: Test docker compose (szybki restart z wolumenu)
+        run: |
+          DATA_SOURCE=sample PORT=8081 docker compose up -d --build
+          for i in $(seq 1 60); do curl -fs http://localhost:8081/data/places.json >/dev/null && break; sleep 1; done
+          docker compose restart
+          for i in $(seq 1 30); do curl -fs http://localhost:8081/data/places.json >/dev/null && break; sleep 1; done
+          docker compose logs | tail -5
+          docker compose down -v
           curl -fs http://localhost:8080/data/places.json | python3 -c "import json,sys; d=json.load(sys.stdin); assert d['rows']; print(len(d['rows']), 'miejsc')"

@@ -40,9 +40,16 @@ cd miejsca-pamieci
 docker compose up
 ```
 
-Otwórz http://localhost:8080. Pierwsze uruchomienie pobiera ok. 55 MB danych z dane.gov.pl i buduje mapę (ok. 1–2 min). Kolejne starty korzystają z pobranych plików.
+Otwórz http://localhost:8080.
 
-Bez internetu: `DATA_SOURCE=sample docker compose up` (mała próbka testowa).
+| Uruchomienie | Czas | Co się dzieje |
+|---|---|---|
+| pierwsze | ok. 2–3 min | pobranie ~55 MB z dane.gov.pl i budowa mapy |
+| każde kolejne | kilka sekund | mapa jest już zbudowana w wolumenie Dockera, serwer startuje od razu |
+| `REFRESH=1 docker compose up` | ok. 2–3 min | pobranie świeżych danych |
+| `DATA_SOURCE=sample docker compose up` | kilka sekund | mała próbka testowa, bez internetu |
+
+Zatrzymanie: `Ctrl+C` albo `docker compose down`. Wymagany jest [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 ### 2. Bez Dockera: sam Python 3.10+
 
